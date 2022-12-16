@@ -15,7 +15,7 @@ with open("src/splitmasked/__init__.py", "r") as fh:
 setuptools.setup(
     name = "splitmasked",
     version = version,
-    description = "Split masked and unmasked parts of sequences in FASTX files.",
+    description = "Separate masked and unmasked parts of sequences in FASTX files.",
     long_description = long_description,
     long_description_content_type = "text/markdown",
     url = "https://github.com/osthomas/splitmasked",
