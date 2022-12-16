@@ -53,7 +53,7 @@ def split_from_boundaries(record, boundaries):
     """
     seq_id = record["id"].split(" ")
     if len(seq_id) > 1:
-        name, comment = seq_id
+        name, comment = seq_id[0], " ".join(seq_id[1:])
     else:
         name, comment = seq_id[0], ""
     seq = record["seq"]
