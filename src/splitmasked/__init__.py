@@ -87,8 +87,8 @@ def main():
     if args.outfile_masked:
         if args.outfile_masked is not sys.stdout:
             fh_masked = open(args.outfile_masked, "w")
-        else:
-            fh_masked = None
+    else:
+        fh_masked = None
 
     try:
         split_masked(
@@ -101,8 +101,10 @@ def main():
             args.revert_lowercase
         )
     finally:
-        fh_unmasked.close()
-        fh_masked.close()
+        if fh_unmasked is not None:
+            fh_unmasked.close()
+        if fh_masked is not None:
+            fh_masked.close()
 
 
 if __name__ == "__main__":

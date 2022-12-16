@@ -150,5 +150,5 @@ def split_masked(
     for record in stream_records(infile):
         split_records = split_record(record, is_masked)
         io.write_split_records(
-            split_records, fh_masked, fh_unmasked,
+            split_records, fh_unmasked, fh_masked,
             minlength_masked, minlength_unmasked, revert_lowercase)

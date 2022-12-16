@@ -14,13 +14,14 @@ def filter_and_format(record, min_length, revert_lowercase):
 
 def write_split_records(
         split_record,
-        fh_masked,
         fh_unmasked,
+        fh_masked,
         minlength_masked,
         minlength_unmasked,
         revert_lowercase):
-    for record in split_record["masked"]:
-        fh_masked.write(filter_and_format(record, minlength_masked, revert_lowercase))
+    if fh_masked:
+        for record in split_record["masked"]:
+            fh_masked.write(filter_and_format(record, minlength_masked, revert_lowercase))
     if fh_unmasked:
         for record in split_record["unmasked"]:
             fh_unmasked.write(filter_and_format(record, minlength_unmasked, False))
