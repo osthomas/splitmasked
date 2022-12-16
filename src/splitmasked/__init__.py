@@ -6,7 +6,7 @@ from splitmasked.split import split_masked
 
 logger = logging.getLogger(__name__)
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 
 def parse_args():
