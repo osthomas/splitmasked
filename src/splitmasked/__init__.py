@@ -55,19 +55,17 @@ def parse_args():
 
     args = parser.parse_args()
     if args.input is sys.stdin and sys.stdin.isatty():
-        logger.error("No input file specified. Tried reading from stdin, but stdin is not a stream!")
-        sys.exit(1)
+        raise ValueError(
+            "No input file specified. Tried reading from stdin, but stdin is not a stream!")
 
     if args.outfile_unmasked is None:
         args.outfile_unmasked = sys.stdout
 
     if args.outfile_masked == args.outfile_unmasked:
-        logger.error("Masked and unmasked parts cannot be written to the same file.")
-        sys.exit(1)
+        raise ValueError("Masked and unmasked parts cannot be written to the same file.")
 
     if args.revert_lowercase and not args.maskchar == "lowercase":
-        logger.error("--revert_lowercase is only valid with --maskchar lowercase")
-        sys.exit(1)
+        raise ValueError("--revert_lowercase is only valid with --maskchar lowercase")
 
     return args
 
@@ -100,6 +98,9 @@ def main():
             args.minlength_unmasked,
             args.revert_lowercase
         )
+    except Exception as e:
+        logger.error(e)
+        sys.exit(1)
     finally:
         if fh_unmasked is not None:
             fh_unmasked.close()
